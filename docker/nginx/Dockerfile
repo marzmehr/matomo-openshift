@@ -3,7 +3,7 @@ FROM redhat/ubi8
 USER root
 
 RUN yum remove -y nodejs
-COPY nginx.repo /etc/yum.repos.d/
+COPY docker/nginx/nginx.repo /etc/yum.repos.d/
 
 # Required for HTTP Basic feature
 RUN yum update -y 
@@ -19,7 +19,7 @@ RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
 RUN sed -i.bak 's/listen\(.*\)80;/listen 8080;/' /etc/nginx/conf.d/default.conf
 
 # Copy config from source to container
-ADD nginx.conf /etc/nginx/
+ADD docker/nginx/nginx.conf /etc/nginx/
 
 EXPOSE 8080
 
