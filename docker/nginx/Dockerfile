@@ -12,8 +12,8 @@ RUN yum install -y openssl ca-certificates
 RUN yum install -y nginx
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY error.log /var/log/nginx
-COPY access.log /var/log/nginx
+COPY docker/nginx/error.log /var/log/nginx
+COPY docker/nginx/access.log /var/log/nginx
 RUN mkdir -p /var/cache/nginx
 # support running as arbitrary user which belogs to the root group
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
